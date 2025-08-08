@@ -12,6 +12,13 @@ import { UsersModule } from './users/users.module';
 import { FilesModule } from './files/files.module';
 import { SeedModule } from './seed/seed.module';
 import { CommonModule } from './common/common.module';
+import { BoardsModule } from './boards/boards.module';
+import { ListsModule } from './lists/lists.module';
+import { TasksModule } from './tasks/tasks.module';
+import { AttachmentsModule } from './attachments/attachments.module';
+import { BoardUsersModule } from './board-users/board-users.module';
+import { CommentsModule } from './comments/comments.module';
+import { LabelsModule } from './labels/labels.module';
 
 @Module({
   imports: [
@@ -37,7 +44,14 @@ import { CommonModule } from './common/common.module';
     UsersModule,
     FilesModule,
     SeedModule,
-    CommonModule
+    CommonModule,
+    BoardsModule,
+    ListsModule,
+    TasksModule,
+    AttachmentsModule,
+    BoardUsersModule,
+    CommentsModule,
+    LabelsModule
   ],
   controllers: [AppController],
   providers: [AppService],

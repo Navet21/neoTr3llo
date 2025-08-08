@@ -17,8 +17,7 @@ async function bootstrap() {
     }),
   );
   
-  //Cambia el prefijo al que quieras que tenga la versión de tu api!
-  app.setGlobalPrefix('api/templateNestJs');
+  app.setGlobalPrefix('api/neoTrello');
   
 
   await app.listen(process.env.PORT ?? 3000);

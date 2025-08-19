@@ -4,8 +4,9 @@ import { UpdateBoardUserDto } from './dto/update-board-user.dto';
 
 @Injectable()
 export class BoardUsersService {
-  create(createBoardUserDto: CreateBoardUserDto) {
-    return 'This action adds a new boardUser';
+
+  async create() {
+    
   }
 
   findAll() {

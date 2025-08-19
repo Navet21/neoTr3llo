@@ -2,8 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { BoardUsersService } from './board-users.service';
 import { CreateBoardUserDto } from './dto/create-board-user.dto';
 import { UpdateBoardUserDto } from './dto/update-board-user.dto';
+import { Auth } from 'src/auth/decorators';
 
 @Controller('board-users')
+@Auth()
 export class BoardUsersController {
   constructor(private readonly boardUsersService: BoardUsersService) {}
 

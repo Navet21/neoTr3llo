@@ -1,11 +1,11 @@
-import { IsBoolean, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsBoolean, IsNotEmpty, IsOptional, IsString, IsUUID } from "class-validator";
 
 export class CreateBoardUserDto {
-    @IsString()
+    @IsUUID()
     @IsNotEmpty()
     userId: string;
 
-    @IsString()
+    @IsUUID()
     @IsNotEmpty()
     boardId: string;
 

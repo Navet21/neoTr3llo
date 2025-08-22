@@ -1,32 +1,52 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { BoardUsersService } from './board-users.service';
-import { CreateBoardUserDto } from './dto/create-board-user.dto';
-import { UpdateBoardUserDto } from './dto/update-board-user.dto';
-import { Auth } from 'src/auth/decorators';
+import { InviteUserToBoardDto} from './dto';
+import { Auth, GetUser } from 'src/auth/decorators';
+import { CreateBoardDto } from 'src/boards/dto/create-board.dto';
+import { User } from 'src/auth/entities/user.entity';
 
 @Controller('board-users')
 @Auth()
 export class BoardUsersController {
   constructor(private readonly boardUsersService: BoardUsersService) {}
 
+  //Create a board 
   @Post()
-  create(@Body() createBoardUserDto: CreateBoardUserDto) {
-    return this.boardUsersService.create(createBoardUserDto);
+  async create(@GetUser() user: User,
+  @Body() createBoardDto: CreateBoardDto
+  ) 
+  {
+    return this.boardUsersService.create(createBoardDto,user);
+  }
+
+  //Add User to Board
+  @Post('invite')
+  async inviteUser(
+    @GetUser() currentUser: User,
+    @Body() inviteUserToBoardDto :InviteUserToBoardDto
+  ){
+    return this.boardUsersService.inviteUserToBoard(inviteUserToBoardDto, currentUser)
+  }
+
+  //Transfer Ownership
+  @Post('transfer-ownership')
+  async transferOwnership(
+  @GetUser() currentUser: User,
+  @Body() inviteUserDto: InviteUserToBoardDto,
+  ) {
+  return this.boardUsersService.transferOwnership(inviteUserDto,currentUser);
   }
 
   @Get()
-  findAll() {
-    return this.boardUsersService.findAll();
+  findAll(
+    @GetUser() currentUser: User,
+  ) {
+    return this.boardUsersService.findAllBoardsByUser(currentUser);
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.boardUsersService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBoardUserDto: UpdateBoardUserDto) {
-    return this.boardUsersService.update(+id, updateBoardUserDto);
   }
 
   @Delete(':id')

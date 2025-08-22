@@ -24,9 +24,4 @@ export class BoardsController {
   id: string, @Body() updateBoardDto: UpdateBoardDto) {
     return this.boardsService.update(id, updateBoardDto);
   }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.boardsService.remove(id);
-  }
 }

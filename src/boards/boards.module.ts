@@ -11,6 +11,7 @@ import { AuthModule } from 'src/auth/auth.module';
   imports: [
     TypeOrmModule.forFeature([Board]),
     AuthModule,
-  ]
+  ],
+  exports:[BoardsService],
 })
 export class BoardsModule {}
